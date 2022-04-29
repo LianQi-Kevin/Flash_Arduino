@@ -26,6 +26,7 @@ sudo apt-get install avrdude
 #### 7. 创建一个目录，并将`avrdude.conf`和`.hex`文件上传到其中
 
 #### 8. 使用python脚本刷写`Arduino`
+> [或者也可以直接使用avrdude刷写Arduino](#直接使用avrdude刷写Arduino)
 
 1. 安装`pyserial`库（连接测试）
 
@@ -63,11 +64,27 @@ optional arguments:
 > python3 flash_arduino_with_avrdude.py --confPath avrdude.conf --boardName Uno --portNo /dev/ACM0 --baudRate 115200 --hexPath All_color_loop_LED.ino.hex
 > ```
 如果正常写入, 您将看到如下内容
+
 ![](https://www.monocilindro.com/wp-content/uploads/2017/03/Arduino_flashing_Raspberry_07-1024x556.png)
 ![](https://www.monocilindro.com/wp-content/uploads/2017/03/Arduino_flashing_Raspberry_08-1024x555.png)
 
 ---
+
+#### 直接使用avrdude刷写Arduino
+
+```
+avrdude -C avrdude.conf -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -U flash:w:efi_davide_nano.ino.hex:i
+```
+
+> `-C`参数指定了`avrdude.conf`的位置 \
+> `-p`参数指定了Arduino所属的微处理器名称，即`atmega328p`,`atmega32u4`等 \
+> `-P`参数指定了串口设备的名称 即`/dev/ttyACM0`\
+> `-U`参数制定了`.hex`文件的路径 范式为`flash:w:<hex_filename>:i`
+
+---
+
 ##### 参考资料
+
 * https://www.monocilindro.com/2017/03/20/flashing-arduino-using-raspberry-pi-shell/
 * https://forum.arduino.cc/t/arduino-1-8-6-error-with-programming-with-usbasp-solution-option/542975
 
