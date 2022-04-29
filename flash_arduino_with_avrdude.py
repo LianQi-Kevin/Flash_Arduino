@@ -1,5 +1,8 @@
 import argparse
 import os
+from distutils.util import strtobool
+
+import serial
 
 
 def main(args):
@@ -25,8 +28,28 @@ def main(args):
                     break
         else:
             portNo = deviceList[0]
+            print("Serial device name not entered, use {}".format(portNo))
     else:
         portNo = args.portNo
+
+    # 连接测试
+    baud_rate = args.baudRate
+    try:
+        serial.Serial(portNo, baud_rate)
+        print("Successful link Arduino, port: {}, baud rate: {}".format(portNo, baud_rate))
+    except:
+        while True:
+            try:
+                portNo = input("Can't link Arduino, please re-input port name: ")
+                baud_rate = int(input("Can't link Arduino, please re-input baud rate: "))
+            except:
+                pass
+            try:
+                serial.Serial(portNo, baud_rate)
+                print("Successful link Arduino, port: {}, baud rate: {}".format(portNo, baud_rate))
+                break
+            except:
+                pass
 
     # 检查”avrdude.conf文件路径“
     if not os.path.isfile(args.confPath):
@@ -48,18 +71,35 @@ def main(args):
             else:
                 break
     else:
-        hex_path = args.confPath
+        hex_path = args.hexPath
 
-    # 拼接命令
-    basic_common = "avrdude -C avrdude.conf -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -U flash:w:efi_davide_nano.ino.hex:i"
+    # 检查微处理器名称是否合法
+    if args.boardName is not None:
+        if args.boardName == "Uno":
+            uP_name = "atmega328p"
+        elif args.boardName == "Leonardo":
+            uP_name = "atmega32u4"
+        else:
+            if args.uP is not None:
+                uP_name = args.uP
+            else:
+                uP_name = input("Please input your board's microprocessor name: ")
+
+    if strtobool(input(
+            "Please check the parameters: \n\tconf path: {} \n\tuP name: {} \n\tserial port: {}\n\tbaud rate: {}\n\t.hex file path: {}\ninput 'yes' to confirm this parameters: ".format(
+                conf_path, uP_name, portNo, baud_rate, hex_path))) == 1:
+        # 拼接命令
+        common = "avrdude -C {} -v -p {} -c arduino -P {} -b {} -D -U flash:w:{}:i".format(conf_path, uP_name, portNo,
+                                                                                           baud_rate, hex_path)
+        os.system(common)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Flashing Arduino with avrdude on Jetson Nano.')
     parser.add_argument('--confPath', type=str, default="avrdude.conf", help='avrdude.conf path. default:avrdude.conf')
-    parser.add_argument('--uP', type=str, default="atmega328p", help='Microprocessor name. default:atmega328p')
-    parser.add_argument('--boardName', type=str, default=None, help='Arduino board name. UNO/Leonardo')
-    parser.add_argument('--portNo', type=str, default=None, help='Serial device name.')
+    parser.add_argument('--uP', type=str, default=None, help='Microprocessor name. such as: atmega328p')
+    parser.add_argument('--boardName', type=str, default=None, help='Arduino board name. Uno/Leonardo')
+    parser.add_argument('--portNo', type=str, default=None, help='Serial device name. such as "/dev/ttyACM0')
     parser.add_argument('--baudRate', type=int, default=115200,
                         help='Port used to communicate with Arduino. default: 115200')
     parser.add_argument('--hexPath', type=str, default=None, help='path to hex file.')
