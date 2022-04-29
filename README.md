@@ -23,6 +23,7 @@ sudo apt-get install avrdude
 ```
 avrdude -C avrdude.conf -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -U flash:w:efi_davide_nano.ino.hex:i
 ```
+> `-C`参数指定了`avrdude.conf`的位置 \
 > `-p`参数指定了Arduino所属的微处理器名称，即`atmega328p`,`atmega32u4`等 \
 > `-P`参数指定了串口设备的名称 即`/dev/ttyACM0`\
 > `-U`参数制定了`.hex`文件的路径 范式为`flash:w:<hex_filename>:i`
@@ -36,5 +37,5 @@ avrdude -C avrdude.conf -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D
 * https://www.monocilindro.com/2017/03/20/flashing-arduino-using-raspberry-pi-shell/
 * https://forum.arduino.cc/t/arduino-1-8-6-error-with-programming-with-usbasp-solution-option/542975
 
-> 不采用原链接查找`avrdude.conf`的原因是当前`Arduino IDE`所属的`avrdude.conf`过新，无法正常兼容\
+> 不采用原链接查找`avrdude.conf`的原因是当前`Arduino IDE`默认使用的`avrdude.conf`过新，无法正常兼容\
 > 可通过调整IDE的`Arduino AVR Boards by Arduino`库的版本到`1.6.21`并使用其`avrdude.conf`文件
