@@ -188,9 +188,11 @@ arduino-cli compile -b arduino:avr:uno ~/MyFirstSketch
 > -b 限定板型 即FQBN \
 > -p 指定编译后上传的端口 e.g.: COM3 或 /dev/ttyACM0 \
 > 注: 通过为`compile`命令指定`-u`参数来执行编译后上传
->```
->arduino-cli compile -b arduino:avr:uno -p /dev/ttyACM0 -u ~/MyFirstSketch 
->```
+> ```
+> arduino-cli compile -b arduino:avr:uno -p /dev/ttyACM0 -u ~/MyFirstSketch 
+> ```
+
+* https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli_compile/
 
 2. 上传项目
 
@@ -202,6 +204,8 @@ arduino-cli upload -b arduino:avr:uno  -p /dev/ttyACM1 ~/MyFirstSketch
 > -p 指定编译后上传的端口 e.g.: COM3 或 /dev/ttyACM0 \
 > -i 指定要用于上传的二进制文件 \
 > -t 上传后验证
+
+* https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli_upload/
 
 ### Step - 3 使用本地文件
 

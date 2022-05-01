@@ -1,14 +1,16 @@
-### Use Jetson Nano flash Arduino
 #### 1. 设置`Arduino IDE`首选项, 确保勾选`compilation`和`upload`
+
 ![](https://www.monocilindro.com/wp-content/uploads/2017/03/Arduino_flashing_Raspberry_01.png)
 
 #### 2. 使用PC上的`Arduino IDE`编译项目
+
 检查编译输出的日志, 寻找`.hex`文件的位置
 > eg: C:\Users\Kishi\AppData\Local\Temp\arduino_build_521698/efi_davide_nano.ino.hex
 
 ![](https://www.monocilindro.com/wp-content/uploads/2017/03/Arduino_flashing_Raspberry_02-1024x556.png)
 
 #### 3. 下载`avrdude.conf`文件
+
 [avrdude.conf](avrdude.conf)
 
 #### 4. 将`avrdude.conf`和`.hex`文件上传到`Jetson Nano`
@@ -26,6 +28,7 @@ sudo apt-get install avrdude
 #### 7. 创建一个目录，并将`avrdude.conf`和`.hex`文件上传到其中
 
 #### 8. 使用python脚本刷写`Arduino`
+
 > [或者也可以直接使用avrdude刷写Arduino](#直接使用avrdude刷写Arduino)
 
 1. 安装`pyserial`库（连接测试）
