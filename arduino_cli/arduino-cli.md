@@ -84,128 +84,128 @@ arduino-cli config init
 
 1. 创建新项目
 
-```
-$ arduino-cli sketch new ~/MyFirstSketch
-Sketch created in: ~/MyFirstSketch
-```
+    ```
+    $ arduino-cli sketch new ~/MyFirstSketch
+    Sketch created in: ~/MyFirstSketch
+    ```
 
 2. 查看并编辑
 
-```
-$ vim ~/MyFirstSketch/MyFirstSketch.ino
-void setup() {
-}
-
-void loop() {
-}
-```
+    ```
+    $ vim ~/MyFirstSketch/MyFirstSketch.ino
+    void setup() {
+    }
+    
+    void loop() {
+    }
+    ```
 
 #### 3. 更新缓存并连接Arduino
 
 1. 更新可用平台和库的本地缓存
 
-```
-arduino-cli core update-index
-```
+    ```
+    arduino-cli core update-index
+    ```
 
 2. 使用USB线连接Arduino和PC后检查是否被识别
 
-```
-$ arduino-cli board list
-
-Port         Protocol Type              Board Name       FQBN                 Core       
-/dev/ttyACM0 serial   Serial Port (USB) Arduino Leonardo arduino:avr:leonardo arduino:avr
-/dev/ttyACM1 serial   Serial Port (USB) Arduino Uno      arduino:avr:uno      arduino:avr
-```
+    ```
+    $ arduino-cli board list
+    
+    Port         Protocol Type              Board Name       FQBN                 Core       
+    /dev/ttyACM0 serial   Serial Port (USB) Arduino Leonardo arduino:avr:leonardo arduino:avr
+    /dev/ttyACM1 serial   Serial Port (USB) Arduino Uno      arduino:avr:uno      arduino:avr
+    ```
 
 3. 安装内核
 
-```
-# 对于arduino:avr内核
-arduino-cli core install arduino:avr
-```
+    ```
+    # 对于arduino:avr内核
+    arduino-cli core install arduino:avr
+    ```
 
 #### 4. 安装库
 
 1. 搜索库
 
-```
-$ arduino-cli lib search pinchange
-Updating index: library_index.json.gz downloaded                                                                                                              
-Updating index: library_index.json.sig downloaded                                                                                                             
-Name: "EasyButtonAtInt01"
-  Author: Armin Joachimsmeyer
-  Maintainer: Armin Joachimsmeyer <armin.arduino@gmail.com>
-  Sentence: Small and easy to use Arduino library for using push buttons at INT0/pin2 and / or any PinChangeInterrupt pin.<br/>Functions for long and double press detection are included.<br/><br/>Just connect buttons between ground and any pin of your Arduino - that's it<br/><br/><b>No call</b> of begin() or polling function like update() required. No blocking debouncing delay.<br/>
-  Paragraph: <br/>Define an EasyButtonIn in you main program and use <i>ButtonStateIsActive</i> or <i>ButtonToggleState</i> to determine your action.<br/>Or use a <b>callback function</b> which will be called once on every button press or release.<br/><br/>Usage:<pre>#define USE_BUTTON_0<br/>#include "EasyButtonAtInt01.hpp"<br/>EasyButton Button0AtPin2;<br/><br/>void setup() {}<br/>void loop() {<br/>...<br/>    digitalWrite(LED_BUILTIN, Button0AtPin2.ButtonToggleState);<br/>...<br/>}</pre><br/><br/><b>New: </b>Avoid mistakenly double press detection after boot.</b><br/>
-  Website: https://github.com/ArminJo/EasyButtonAtInt01
-  Category: Signal Input/Output
-  Architecture: avr
-  Types: Contributed
-  Versions: [1.0.0, 2.0.0, 2.1.0, 3.0.0, 3.1.0, 3.2.0, 3.3.0, 3.3.1]
-  Provides includes: Arduino.h
-Name: "IRLremote"
-  Author: NicoHood
-  Maintainer: NicoHood <blog@NicoHood.de>
-  Sentence: Lightweight Infrared library for Arduino
-  Paragraph: IRLremote implements a fast and compact way to analyze IR signals with PinInterrupts and PinChangeInterrupts.
-  Website: https://github.com/NicoHood/IRLremote
-  Category: Signal Input/Output
-  Architecture: avr, esp8266
-  Types: Contributed
-  Versions: [1.7.4, 1.8.0, 1.9.0, 2.0.0, 2.0.1, 2.0.2]
-Name: "PinChangeInterrupt"
-  Author: NicoHood
-  Maintainer: NicoHood <blog@NicoHood.de>
-  Sentence: A simple & compact PinChangeInterrupt library for Arduino.
-  Paragraph: PinChangeInterrupt library with a resource friendly implementation (API and LowLevel). PinChangeInterrupts are different than normal Interrupts. See readme for more information.
-  Website: https://github.com/NicoHood/PinChangeInterrupt
-  Category: Signal Input/Output
-  Architecture: avr
-  Types: Contributed
-  Versions: [1.2.0, 1.2.1, 1.2.2, 1.2.4, 1.2.6, 1.2.7, 1.2.8, 1.2.9]
-```
+    ```
+    $ arduino-cli lib search pinchange
+    Updating index: library_index.json.gz downloaded                                                                                                              
+    Updating index: library_index.json.sig downloaded                                                                                                             
+    Name: "EasyButtonAtInt01"
+      Author: Armin Joachimsmeyer
+      Maintainer: Armin Joachimsmeyer <armin.arduino@gmail.com>
+      Sentence: Small and easy to use Arduino library for using push buttons at INT0/pin2 and / or any PinChangeInterrupt pin.<br/>Functions for long and double press detection are included.<br/><br/>Just connect buttons between ground and any pin of your Arduino - that's it<br/><br/><b>No call</b> of begin() or polling function like update() required. No blocking debouncing delay.<br/>
+      Paragraph: <br/>Define an EasyButtonIn in you main program and use <i>ButtonStateIsActive</i> or <i>ButtonToggleState</i> to determine your action.<br/>Or use a <b>callback function</b> which will be called once on every button press or release.<br/><br/>Usage:<pre>#define USE_BUTTON_0<br/>#include "EasyButtonAtInt01.hpp"<br/>EasyButton Button0AtPin2;<br/><br/>void setup() {}<br/>void loop() {<br/>...<br/>    digitalWrite(LED_BUILTIN, Button0AtPin2.ButtonToggleState);<br/>...<br/>}</pre><br/><br/><b>New: </b>Avoid mistakenly double press detection after boot.</b><br/>
+      Website: https://github.com/ArminJo/EasyButtonAtInt01
+      Category: Signal Input/Output
+      Architecture: avr
+      Types: Contributed
+      Versions: [1.0.0, 2.0.0, 2.1.0, 3.0.0, 3.1.0, 3.2.0, 3.3.0, 3.3.1]
+      Provides includes: Arduino.h
+    Name: "IRLremote"
+      Author: NicoHood
+      Maintainer: NicoHood <blog@NicoHood.de>
+      Sentence: Lightweight Infrared library for Arduino
+      Paragraph: IRLremote implements a fast and compact way to analyze IR signals with PinInterrupts and PinChangeInterrupts.
+      Website: https://github.com/NicoHood/IRLremote
+      Category: Signal Input/Output
+      Architecture: avr, esp8266
+      Types: Contributed
+      Versions: [1.7.4, 1.8.0, 1.9.0, 2.0.0, 2.0.1, 2.0.2]
+    Name: "PinChangeInterrupt"
+      Author: NicoHood
+      Maintainer: NicoHood <blog@NicoHood.de>
+      Sentence: A simple & compact PinChangeInterrupt library for Arduino.
+      Paragraph: PinChangeInterrupt library with a resource friendly implementation (API and LowLevel). PinChangeInterrupts are different than normal Interrupts. See readme for more information.
+      Website: https://github.com/NicoHood/PinChangeInterrupt
+      Category: Signal Input/Output
+      Architecture: avr
+      Types: Contributed
+      Versions: [1.2.0, 1.2.1, 1.2.2, 1.2.4, 1.2.6, 1.2.7, 1.2.8, 1.2.9]
+    ```
 
 2. 安装库
 
-```
-$ arduino-cli lib install PinChangeInterrupt
-Downloading PinChangeInterrupt@1.2.9...
-PinChangeInterrupt@1.2.9 downloaded
-Installing PinChangeInterrupt@1.2.9...
-Installed PinChangeInterrupt@1.2.9
-```
+    ```
+    $ arduino-cli lib install PinChangeInterrupt
+    Downloading PinChangeInterrupt@1.2.9...
+    PinChangeInterrupt@1.2.9 downloaded
+    Installing PinChangeInterrupt@1.2.9...
+    Installed PinChangeInterrupt@1.2.9
+    ```
 
 #### 5. 编译并上传项目到Arduino开发板
 
 1. 编译项目
 
-```
-arduino-cli compile -b arduino:avr:uno ~/MyFirstSketch
-```
+    ```
+    arduino-cli compile -b arduino:avr:uno ~/MyFirstSketch
+    ```
 
-> --build-cache-path 保存编译后文件的位置 (指定位置将生成一个`core`文件夹)\
-> -b 限定板型 即FQBN \
-> -p 指定编译后上传的端口 e.g.: COM3 或 /dev/ttyACM0 \
-> 注: 通过为`compile`命令指定`-u`参数来执行编译后上传
-> ```
-> arduino-cli compile -b arduino:avr:uno -p /dev/ttyACM0 -u ~/MyFirstSketch 
-> ```
+   > --build-cache-path 保存编译后文件的位置 (指定位置将生成一个`core`文件夹)\
+   > -b 限定板型 即 FQBN \
+   > -p 指定编译后上传的端口 e.g.: COM3 或 /dev/ttyACM0 \
+   > 注: 通过为`compile`命令指定`-u`参数来执行编译后上传
+   > ```
+    > arduino-cli compile -b arduino:avr:uno -p /dev/ttyACM0 -u ~/MyFirstSketch 
+    > ```
 
-* https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli_compile/
+    * https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli_compile/
 
 2. 上传项目
 
-```
-arduino-cli upload -b arduino:avr:uno  -p /dev/ttyACM1 ~/MyFirstSketch
-```
+    ```
+    arduino-cli upload -b arduino:avr:uno  -p /dev/ttyACM1 ~/MyFirstSketch
+    ```
 
-> -b 限定板型 即FQBN \
-> -p 指定编译后上传的端口 e.g.: COM3 或 /dev/ttyACM0 \
-> -i 指定要用于上传的二进制文件 \
-> -t 上传后验证
+   > -b 限定板型 即FQBN \
+   > -p 指定编译后上传的端口 e.g.: COM3 或 /dev/ttyACM0 \
+   > -i 指定要用于上传的二进制文件 (.hex文件)\
+   > -t 上传后验证
 
-* https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli_upload/
+    * https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli_upload/
 
 ### Step - 3 使用本地文件
 
@@ -223,3 +223,19 @@ arduino-cli compile -b arduino:avr:uno -p /dev/ttyACM0 -u -t 项目文件夹
 
 * [arduino-cli 官方网站 快速入门](https://arduino.github.io/arduino-cli/0.21/getting-started/)
 * [arduino-cli github官网](https://github.com/arduino/arduino-cli/)
+
+---
+> 注: arduino-cli 同样依赖avrdude上传 \
+> baud-rate 参数使用fqbn设置
+---
+> 使用arduino-leonardo时可能会遇到:
+> ```
+> Connecting to programmer: 
+> avrdude: butterfly_recv(): programmer is not responding
+> "; type = Sammer: Id = "C
+>     Software Version = 1.0; No Hardware Version given.
+> Programmer supports auto addr increment.
+> ```
+> 通过将leonardo板重新插回PC重置来解决
+
+参考: https://stackoverflow.com/questions/49283074/arduino-leonardo-avrdude-butterfly-recv-programmer-is-not-responding
